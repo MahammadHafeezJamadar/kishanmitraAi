@@ -1,4 +1,3 @@
-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import tensorflow as tf
@@ -21,6 +20,17 @@ TREATMENTS = {
     "Rice_Leaf Blast": {"treatment": "Tricyclazole spray karo", "severity": "High"},
     "Mango_Anthracnose": {"treatment": "Carbendazim spray karo", "severity": "High"},
 }
+
+@app.route("/")
+def home():
+    return jsonify({
+        "message": "KrishiMitra AI Backend is running! 🌱",
+        "status": "ok",
+        "endpoints": {
+            "health": "/api/health",
+            "predict": "/api/predict (POST)"
+        }
+    })
 
 @app.route("/api/predict", methods=["POST"])
 def predict():
